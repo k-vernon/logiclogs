@@ -12,7 +12,9 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      User.hasOne(models.Profile, { as: 'profile', foreignKey: 'userId' })
+      User.hasMany(models.Project, { foreignKey: 'userId' });
+      User.hasMany(models.Ticket, { foreignKey: 'userId' });
+      User.hasOne(models.Profile, { as: 'profile', foreignKey: 'userId', onDelete: 'CASCADE' });
     }
 
     comparePassword(tryPassword, cb) {
