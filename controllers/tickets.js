@@ -3,14 +3,7 @@ const { Ticket } = require('../models');
 
 const createTicket = async (req, res) => {
   try {
-    const { title, description, projectId, userId } = req.body;
-
-    const ticket = await Ticket.create({
-      title,
-      description,
-      projectId,
-      userId,
-    });
+    const ticket = await Ticket.create(req.body);
 
     res.status(201).json({ ticket });
   } catch (error) {
@@ -32,9 +25,7 @@ const getAllTickets = async (req, res) => {
 
 const getTicketById = async (req, res) => {
   try {
-    const { id } = req.params;
-
-    const ticket = await Ticket.findByPk(id);
+    const ticket = await Ticket.findByPk(req.params.id)
 
     if (!ticket) {
       return res.status(404).json({ error: 'Ticket not found' });
@@ -49,21 +40,9 @@ const getTicketById = async (req, res) => {
 
 const updateTicket = async (req, res) => {
   try {
-    const { id } = req.params;
-    const { title, description, status, priority } = req.body;
+    const ticket = await Ticket.findByPk(req.params.id);
 
-    const ticket = await Ticket.findByPk(id);
-
-    if (!ticket) {
-      return res.status(404).json({ error: 'Ticket not found' });
-    }
-
-    await ticket.update({
-      title,
-      description,
-      status,
-      priority,
-    });
+    await ticket.update(req.body);
 
     res.status(200).json({ ticket });
   } catch (error) {
@@ -74,16 +53,8 @@ const updateTicket = async (req, res) => {
 
 const deleteTicket = async (req, res) => {
   try {
-    const { id } = req.params;
-
-    const ticket = await Ticket.findByPk(id);
-
-    if (!ticket) {
-      return res.status(404).json({ error: 'Ticket not found' });
-    }
-
-    // Delete the ticket
-    await ticket.destroy();
+    const ticket = await Ticket.findByPk(req.params.id)
+    await ticket.destroy()
 
     res.status(200).json({ message: 'Ticket deleted successfully' });
   } catch (error) {
@@ -97,5 +68,5 @@ module.exports = {
   getAllTickets,
   getTicketById,
   updateTicket,
-
+  deleteTicket,
 }
