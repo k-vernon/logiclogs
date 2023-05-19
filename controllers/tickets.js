@@ -30,10 +30,25 @@ const getAllTickets = async (req, res) => {
   }
 };
 
+const getTicketById = async (req, res) => {
+  try {
+    const { id } = req.params;
 
+    const ticket = await Ticket.findByPk(id);
+
+    if (!ticket) {
+      return res.status(404).json({ error: 'Ticket not found' });
+    }
+
+    res.status(200).json({ ticket });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Failed to fetch ticket' });
+  }
+};
 
 module.exports = {
   createTicket,
   getAllTickets,
-
+  getTicketById
 }
