@@ -47,8 +47,35 @@ const getTicketById = async (req, res) => {
   }
 };
 
+const updateTicket = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { title, description, status, priority } = req.body;
+
+    const ticket = await Ticket.findByPk(id);
+
+    if (!ticket) {
+      return res.status(404).json({ error: 'Ticket not found' });
+    }
+
+    await ticket.update({
+      title,
+      description,
+      status,
+      priority,
+    });
+
+    res.status(200).json({ ticket });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Failed to update ticket' });
+  }
+};
+
 module.exports = {
   createTicket,
   getAllTickets,
-  getTicketById
+  getTicketById,
+  updateTicket,
+  
 }
