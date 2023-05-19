@@ -72,10 +72,30 @@ const updateTicket = async (req, res) => {
   }
 };
 
+const deleteTicket = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const ticket = await Ticket.findByPk(id);
+
+    if (!ticket) {
+      return res.status(404).json({ error: 'Ticket not found' });
+    }
+
+    // Delete the ticket
+    await ticket.destroy();
+
+    res.status(200).json({ message: 'Ticket deleted successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Failed to delete ticket' });
+  }
+};
+
 module.exports = {
   createTicket,
   getAllTickets,
   getTicketById,
   updateTicket,
-  
+
 }
