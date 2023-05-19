@@ -19,6 +19,21 @@ const createTicket = async (req, res) => {
   }
 };
 
+const getAllTickets = async (req, res) => {
+  try {
+    const tickets = await Ticket.findAll();
+
+    res.status(200).json({ tickets });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Failed to fetch tickets' });
+  }
+};
+
+
+
 module.exports = {
-  createTicket
+  createTicket,
+  getAllTickets,
+
 }
