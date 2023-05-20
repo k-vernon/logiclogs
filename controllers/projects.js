@@ -37,13 +37,24 @@ const getProjectById = async (req, res) => {
   }
 };
 
+const updateProject = async (req, res) => {
+  try {
+    const project = await Project.findByPk(req.params.id);
 
+    await project.update(req.body);
+
+    res.status(200).json({ project });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Failed to update project' });
+  }
+};
 
 
 module.exports = {
   createProject,
   getAllProjects,
   getProjectById,
-
+  updateProject,
 
 }
