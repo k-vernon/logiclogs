@@ -50,11 +50,22 @@ const updateProject = async (req, res) => {
   }
 };
 
+const deleteProject = async (req, res) => {
+  try {
+    const project = await Project.findByPk(req.params.id);
+    await project.destroy();
+
+    res.status(200).json({ message: 'Project deleted successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Failed to delete project' });
+  }
+};
 
 module.exports = {
   createProject,
   getAllProjects,
   getProjectById,
   updateProject,
-
+  deleteProject,
 }
