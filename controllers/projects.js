@@ -11,8 +11,21 @@ const createProject = async (req, res) => {
   }
 };
 
+const getAllProjects = async (req, res) => {
+  try {
+    const projects = await Project.findAll();
+
+    res.status(200).json({ projects });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Failed to fetch projects' });
+  }
+};
+
 
 module.exports = {
   createProject,
+  getAllProjects,
+  
 
 }
