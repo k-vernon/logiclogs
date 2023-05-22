@@ -24,6 +24,7 @@ const getAllProjects = async (req, res) => {
 
 const getProjectById = async (req, res) => {
   try {
+    
     const project = await Project.findByPk(req.params.id);
 
     if (!project) {
