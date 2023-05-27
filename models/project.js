@@ -24,10 +24,15 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         defaultValue: 'Open',
       },
+      code: {
+        type: DataTypes.STRING
+      }
     },
     {
       sequelize,
       modelName: 'Project',
+      allowNull: false,
+      unique: true,
     }
   );
   return Project;
