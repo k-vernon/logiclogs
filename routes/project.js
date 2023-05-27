@@ -7,19 +7,19 @@ const { decodeUserFromToken, checkAuth } = middleware
 /*---------- Public Routes ----------*/
 
 // Create 
-router.post('/', projectController.createProject);
+router.post('/', projectsCtrl.createProject);
 
 // Index
-router.get('/', projectController.getAllProjects);
+router.get('/', projectsCtrl.getAllProjects);
 
 // Show 
-router.get('/:id', projectController.getProjectById);
+router.get('/:id', projectsCtrl.getProjectById);
 
 // Update
-router.put('/:id', projectController.updateProject);
+router.put('/:id', projectsCtrl.updateProject);
 
 // Delete
-router.delete('/:id', projectController.deleteProject);
+router.delete('/:id', projectsCtrl.deleteProject);
 
 
 /*---------- Protected Routes ----------*/
