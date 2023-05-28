@@ -18,6 +18,11 @@ module.exports = {
       status: {
         type: Sequelize.STRING
       },
+      code: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
