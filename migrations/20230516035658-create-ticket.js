@@ -7,34 +7,58 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       title: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       description: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
+        allowNull: false,
       },
       status: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       priority: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      dueDate: {
+        type: Sequelize.DATE,
+        allowNull: true,
+      },
+      category: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      tags: {
+        type: Sequelize.JSONB,
+        allowNull: true,
+      },
+      attachments: {
+        type: Sequelize.JSONB,
+        allowNull: true,
+      },
+      comments: {
+        type: Sequelize.TEXT,
+        allowNull: true,
       },
       projectId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       userId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
