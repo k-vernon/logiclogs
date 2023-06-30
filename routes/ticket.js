@@ -15,15 +15,15 @@ router.get('/', ticketsCtrl.getAllTickets);
 // Show 
 router.get('/:id', ticketsCtrl.getTicketById);
 
-// Update
-router.put('/:id', ticketsCtrl.updateTicket);
-
-// Delete
-router.delete('/:id', ticketsCtrl.deleteTicket);
 
 
 /*---------- Protected Routes ----------*/
 
+// Update
+router.put('/:id', checkAuth, ticketsCtrl.updateTicket);
+
+// Delete
+router.delete('/:id', checkAuth, ticketsCtrl.deleteTicket);
 
 
 module.exports = router
