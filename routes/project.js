@@ -15,15 +15,14 @@ router.get('/', projectsCtrl.getAllProjects);
 // Show 
 router.get('/:id', projectsCtrl.getProjectById);
 
-// Update
-router.put('/:id', projectsCtrl.updateProject);
-
-// Delete
-router.delete('/:id', projectsCtrl.deleteProject);
-
 
 /*---------- Protected Routes ----------*/
 
+// Update
+router.put('/:id', checkAuth, projectsCtrl.updateProject);
+
+// Delete
+router.delete('/:id', checkAuth, projectsCtrl.deleteProject);
 
 module.exports = router
 
